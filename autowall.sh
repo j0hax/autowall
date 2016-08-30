@@ -1,7 +1,6 @@
 #!/bin/sh
 
 # configuration
-wget="/usr/local/bin/wget"
 walldest="/var/tmp"
 
 # get resolution
@@ -16,7 +15,7 @@ height=$(expr $(system_profiler SPDisplaysDataType | awk '/Resolution:/ {print $
 url="https://unsplash.it/g/$width/$height/?random"
 
 # download the image
-$($wget -qO $walldest/wallpaper.jpg $url)
+$(curl -so $walldest/wallpaper.jpg $url)
 status=$?
 
 # change background, or give reason for wget failure
@@ -24,12 +23,6 @@ if [ $status -eq 0 ]; then
   osascript -e 'tell application "Finder" to set desktop picture to POSIX file "/var/tmp/wallpaper.jpg"'
   killall Dock
 else
-  if [ $status -eq 3 ]; then
-    echo "File I/O error. Check if you have permissions to write to $walldest." 1>&2
-  elif [ $status -eq 4 ]; then
-    echo "Network failure. Check your internet connection." 1>&2
-  elif [ $status -eq 8 ]; then
-    echo "Network failure. Server issued error response." 1>&2
-  fi
+  echo "cURL returned error $status. Check your internet connection and if you have permissions to write to $walldest." 1>&2
   exit $status
 fi
