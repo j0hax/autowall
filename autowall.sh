@@ -4,8 +4,8 @@
 walldest="/var/tmp"
 
 # get resolution
-width=$(expr $(system_profiler SPDisplaysDataType | awk '/Resolution:/ {print $2}') \* 2)
-height=$(expr $(system_profiler SPDisplaysDataType | awk '/Resolution:/ {print $4}') \* 2)
+width=$(expr $(/usr/sbin/system_profiler SPDisplaysDataType | awk '/Resolution:/ {print $2}') \* 2)
+height=$(expr $(/usr/sbin/system_profiler SPDisplaysDataType | awk '/Resolution:/ {print $4}') \* 2)
 
 # double the queried resolution to avoid noticable artifacts
 #width=$(expr $width \* 2)
