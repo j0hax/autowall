@@ -5,7 +5,7 @@ Recommended: `curl -sL 'https://raw.githubusercontent.com/j0hax/autowall/master/
 
 Or, download the script yourself and run `chmod +x`, then run it with `./autowall`.
 ## Support
-*At the moment this is MacOS only.*
+At the moment the script is MacOS only.
 
-Linux support may come as volunteers help. (`feh` anyone?)
+*Linux support may come as volunteers contribute. (`feh` anyone?)*
 
